@@ -1,25 +1,25 @@
 package com.quiz3.game3.quiz.service;
 
-import com.quiz3.game3.quiz.modele.utilisateur;
+import com.quiz3.game3.quiz.modele.Utilisateur;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 
-public class utilisateurserviceimpl implements utilisateurservice {
+public class Utilisateurserviceimpl implements Utilisateurservice {
 
     @Override
-    public utilisateur creer(utilisateur User) {
+    public Utilisateur creer(Utilisateur User) {
         return null;
     }
 
     @Override
-    public List<utilisateur> lire() {
+    public List<Utilisateur> lire() {
         return null;
     }
 
     @Override
-    public utilisateur modifier(Long id, utilisateur user) {
+    public Utilisateur modifier(Long id, Utilisateur user) {
         return null;
     }
 

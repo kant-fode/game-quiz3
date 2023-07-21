@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 @Table
 
-public class question {
+public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -20,14 +20,14 @@ public class question {
     private String content;
 
     @ManyToOne
-    @JoinColumn(name = "quiz", nullable = false)
-    private quiz quiz;
+    @JoinColumn(name = "quiz_id", nullable = false)
+    private Quiz quiz;
 
     // Relation OneToMany avec les réponses de la question
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
-    private List<reponse> reponse;
+    private List<Reponse> reponses;
 
-    public question() {
+    public Question() {
     }
 
     public String getOption1() {

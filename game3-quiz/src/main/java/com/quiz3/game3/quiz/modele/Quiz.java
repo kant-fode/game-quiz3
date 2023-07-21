@@ -4,17 +4,17 @@ import jakarta.persistence.*;
 
 @Entity
 @Table (name = "quiz")
-public class quiz {
+public class Quiz {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
     private String categorie;
     private String pseudo;
-
+//association avc  utilisateur
     @ManyToOne
     @JoinColumn(name = "utilisateur_id", nullable = false)
-    private utilisateur utilisateur;
-
+    private Utilisateur utilisateur;
+//getter & setters
     public String getCategorie() {
         return categorie;
     }
