@@ -32,7 +32,7 @@ public class QuizController {
     public Quiz update(@PathVariable Long id, @RequestBody Quiz quiz){
         return quizservice.modifier(id,quiz);
     }
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete/{id}")
     public String delete (@PathVariable Long id){
         return quizservice.supprimer(id);
     }

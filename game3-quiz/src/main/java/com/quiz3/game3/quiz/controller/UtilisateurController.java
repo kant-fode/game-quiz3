@@ -27,11 +27,16 @@ public class UtilisateurController {
        Optional<List> user = Optional.ofNullable(utilisateurservice.lire());
        return Optional.ofNullable(user.orElse(null));
     }
+
+    @GetMapping("/{id}")
+    public Utilisateur getUtilisateurById(@PathVariable Long id){
+        return utilisateurservice.getUtilisateurById(id);
+    }
     @PutMapping("/update/{id}")
     public Utilisateur update(@PathVariable Long id, @RequestBody Utilisateur utilisateur){
         return utilisateurservice.modifier(id,utilisateur);
     }
-@DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String delete (@PathVariable Long id){
         return utilisateurservice.supprimer(id);
     }

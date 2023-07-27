@@ -1,9 +1,7 @@
 package com.quiz3.game3.quiz.controller;
 
 import com.quiz3.game3.quiz.modele.Category;
-import com.quiz3.game3.quiz.modele.Question;
 import com.quiz3.game3.quiz.service.Categoryservice;
-import com.quiz3.game3.quiz.service.Questionservice;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

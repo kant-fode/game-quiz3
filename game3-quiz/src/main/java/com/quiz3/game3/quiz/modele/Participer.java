@@ -21,14 +21,10 @@ public class Participer {
     @ManyToOne
     @JoinColumn(name = "quiz_id", referencedColumnName = "id")
     private Quiz quiz;
-
     public Participer() {
-
     }
 
-    //getters et setters
-
-
+//getters & setters
     public Long getId() {
         return id;
     }
@@ -43,6 +39,14 @@ public class Participer {
 
     public void setLocalDateTime(LocalDateTime localDateTime) {
         this.localDateTime = localDateTime;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public Utilisateur getUtilisateur() {
@@ -61,21 +65,8 @@ public class Participer {
         this.quiz = quiz;
     }
 
-    public int getScore() {
-        return score;
-    }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-
-
-
-
-    // constructeur
-
-
+    //constructeur
     public Participer(Long id, LocalDateTime localDateTime, int score, Utilisateur utilisateur, Quiz quiz) {
         this.id = id;
         this.localDateTime = localDateTime;

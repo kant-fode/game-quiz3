@@ -23,6 +23,16 @@ public class Utilisateur {
     @JsonIgnore
     @OneToMany(mappedBy = "utilisateur", cascade=CascadeType.ALL)
     private List<Quiz> quizCrees = new ArrayList<>();
+    //getter & setter
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getPseudo() {
         return pseudo;
     }
@@ -39,12 +49,12 @@ public class Utilisateur {
         this.email = email;
     }
 
-    public long getId() {
-        return id;
+    public String getPassword() {
+        return password;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public List<Quiz> getQuizCrees() {
@@ -55,15 +65,8 @@ public class Utilisateur {
         this.quizCrees = quizCrees;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-
+//construteur
     public Utilisateur() {
 
 

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class Reponseservice {
     @Autowired
@@ -24,9 +26,8 @@ public class Reponseservice {
     public Reponse modifier(Long id, Reponse rep) {
         return reponsedao.findById(id).map(R -> {
             R.setContenu(rep.getContenu());
-            R.setEstCorrecte(rep.isEstCorrecte());
+            R.setReponseType(rep.isReponseType());
             R.setQuestion(rep.getQuestion());
-            R.setUtilisateur(rep.getUtilisateur());
             return reponsedao.save(R);
         }).orElseThrow(() -> new RuntimeException("Reponse non trouvée avec l'identifiant : " + id));
     }
@@ -34,6 +35,14 @@ public class Reponseservice {
     public String supprimer(Long id) {
         reponsedao.deleteById(id);
         return "Suppression effectuée !";
+    }
+
+        public Optional<Reponse> getResponseById(Long checkedReponseID) {
+        return reponsedao.findById(checkedReponseID);
+    }
+
+    public List<Reponse> getAllResponseByQuestionId(Long quizId) {
+        return reponsedao.findReponsesByQuestion_Id(quizId);
     }
 }
 

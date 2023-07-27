@@ -21,10 +21,6 @@ public class Questionservice {
 
     public Question modifier(Long id, Question question) {
         return questiondao.findById(id).map(q -> {
-            q.setOption1(question.getOption1());
-            q.setOption2(question.getOption2());
-            q.setOption3(question.getOption3());
-            q.setOption4(question.getOption4());
             q.setContent(question.getContent());
             q.setQuiz(question.getQuiz());
             q.setReponses(question.getReponses());
@@ -35,5 +31,9 @@ public class Questionservice {
     public String supprimer(Long id) {
         questiondao.deleteById(id);
         return "Suppression effectuée !";
+    }
+
+    public Question findUtilisateurById(Long questionId) {
+        return questiondao.findQuestionById(questionId);
     }
 }

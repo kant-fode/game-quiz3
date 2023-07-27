@@ -8,47 +8,20 @@ public class Reponse {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(length = 10)
     private Long id;
-
     @Column(nullable = false)
     private String contenu;
-
     @Column(nullable = false)
-    private boolean estCorrecte;
+    private boolean reponseType;
 
     // Association avec Question
     @ManyToOne
     @JoinColumn(name = "question_id", nullable = false)
     private Question question;
 
-    // Association avec Utilisateur
-    @ManyToOne
-    @JoinColumn(name = "utilisateur_id", nullable = false)
-    private Utilisateur utilisateur;
+    public Reponse() {
 
-//getter et setter
-    public String getContenu() {
-        return contenu;
     }
-
-    public void setContenu(String contenu) {
-        this.contenu = contenu;
-    }
-
-    public boolean isEstCorrecte() {
-        return estCorrecte;
-    }
-
-    public void setEstCorrecte(boolean estCorrecte) {
-        this.estCorrecte = estCorrecte;
-    }
-
-    public Question getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(Question question) {
-        this.question = question;
-    }
+    //getter et setter
 
     public Long getId() {
         return id;
@@ -58,11 +31,35 @@ public class Reponse {
         this.id = id;
     }
 
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
+    public String getContenu() {
+        return contenu;
     }
 
-    public void setUtilisateur(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
+    public void setContenu(String contenu) {
+        this.contenu = contenu;
+    }
+
+    public boolean isReponseType() {
+        return reponseType;
+    }
+
+    public void setReponseType(boolean reponseType) {
+        this.reponseType = reponseType;
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
+//constructeur
+
+    public Reponse(Long id, String contenu, boolean reponseType, Question question) {
+        this.id = id;
+        this.contenu = contenu;
+        this.reponseType = reponseType;
+        this.question = question;
     }
 }

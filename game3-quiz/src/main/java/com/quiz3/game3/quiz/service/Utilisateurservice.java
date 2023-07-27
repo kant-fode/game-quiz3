@@ -58,7 +58,11 @@ public class Utilisateurservice {
     }
 
 
-    public Optional<Utilisateur> getUtilisateurById(Long utilisateurId) {
-        return null;
+    public Utilisateur getUtilisateurById(Long utilisateurId) {
+        return utilisateurdaoUser.findById(utilisateurId).get();
+    }
+
+    public Utilisateur findUtilisateurById(long userId) {
+        return  utilisateurdaoUser.findById((userId)).get();
     }
 }
