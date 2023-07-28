@@ -17,6 +17,7 @@ public class Participer {
     @ManyToOne
     @JoinColumn(name = "utilisateur_id", referencedColumnName = "id")
     private Utilisateur utilisateur;
+
     //Association avc quiz
     @ManyToOne
     @JoinColumn(name = "quiz_id", referencedColumnName = "id")
@@ -74,5 +75,16 @@ public class Participer {
         this.utilisateur = utilisateur;
         this.quiz = quiz;
     }
+
+    /*@ManyToOne(optional = false)
+    private Utilisateur utilisateurs;
+
+    public Utilisateur getUtilisateurs() {
+        return utilisateurs;
+    }
+
+    public void setUtilisateurs(Utilisateur utilisateurs) {
+        this.utilisateurs = utilisateurs;
+    }*/
 }
 

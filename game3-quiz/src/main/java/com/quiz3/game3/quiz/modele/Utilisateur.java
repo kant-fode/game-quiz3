@@ -2,9 +2,12 @@ package com.quiz3.game3.quiz.modele;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.servlet.http.Part;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Utilisateur {
@@ -21,10 +24,17 @@ public class Utilisateur {
 
     // Association avec Quiz
     @JsonIgnore
-    @OneToMany(mappedBy = "utilisateur", cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "utilisateur", cascade=CascadeType.ALL, orphanRemoval = true)
     private List<Quiz> quizCrees = new ArrayList<>();
-    //getter & setter
 
+   @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Participer> participers = new ArrayList<>();
+
+
+
+    /*@ManyToMany(mappedBy = "utilisateurs", cascade = CascadeType.ALL)
+    private Set<Quiz> quizs = new HashSet<>();*/
+    //getter & setter
     public long getId() {
         return id;
     }
@@ -82,6 +92,13 @@ public class Utilisateur {
 
     }
 
+    public List<Participer> getParticipers() {
+        return participers;
+    }
+
+    public void setParticipers(List<Participer> participers) {
+        this.participers = participers;
+    }
 
 
     // Association avec Quiz (pour les quiz auxquels l'utilisateur a participé)

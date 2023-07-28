@@ -1,6 +1,10 @@
 package com.quiz3.game3.quiz.modele;
 
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Category {
 
@@ -12,11 +16,14 @@ public class Category {
     private String Titre;
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "utilisateur_id", nullable = false)
-    private Utilisateur utilisateur;
+// Association avc quiz
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    private List<Quiz> quiz = new ArrayList<>();
+
     public Category() {
+
     }
+
 
     public long getId() {
         return id;
@@ -42,18 +49,18 @@ public class Category {
         this.description = description;
     }
 
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
+    public List<Quiz> getQuiz() {
+        return quiz;
     }
 
-    public void setUtilisateur(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
+    public void setQuiz(List<Quiz> quiz) {
+        this.quiz = quiz;
     }
 
     public Category(long id, String nom, String description, Utilisateur utilisateur) {
         this.id = id;
         this.Titre = nom;
         this.description = description;
-        this.utilisateur = utilisateur;
+
     }
 }

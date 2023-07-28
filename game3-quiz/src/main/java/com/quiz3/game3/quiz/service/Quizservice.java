@@ -27,7 +27,6 @@ public class Quizservice {
 
     public Quiz modifier(Long id, Quiz quiz) {
         return quizdao.findById(id).map(q -> {
-            q.setCategorie(quiz.getCategorie());
             q.setTritre(quiz.getTritre());
             return quizdao.save(q);
         }).orElseThrow(() -> new RuntimeException("quiz introuvable : " + id));
