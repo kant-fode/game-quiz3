@@ -14,7 +14,7 @@ public class Question {
     private long id;
 
     @Column(nullable = false)
-    private String content;
+    private String contenu;
 
     @Column(columnDefinition = "integer default 1")
     private int points;
@@ -45,9 +45,9 @@ public class Question {
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
     private List<Reponse> reponses;
 
-    public Question(long id, String content, int points, Quiz quiz, List<Reponse> reponses) {
+    public Question(long id, String contenu, int points, Quiz quiz, List<Reponse> reponses) {
         this.id = id;
-        this.content = content;
+        this.contenu = contenu;
         this.points = points;
         this.quiz = quiz;
         this.reponses = reponses;
@@ -74,12 +74,12 @@ public class Question {
         this.reponses = reponses;
     }
 
-    public String getContent() {
-        return content;
+    public String getContenu() {
+        return contenu;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setContenu(String content) {
+        this.contenu = content;
     }
 }
 

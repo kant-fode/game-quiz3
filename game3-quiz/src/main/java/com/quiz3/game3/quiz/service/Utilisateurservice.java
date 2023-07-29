@@ -1,60 +1,63 @@
 package com.quiz3.game3.quiz.service;
 
 import com.quiz3.game3.quiz.ApiResponse;
-import com.quiz3.game3.quiz.repository.Utilisateurdao_user;
+import com.quiz3.game3.quiz.repository.UtilisateurRepository;
 import com.quiz3.game3.quiz.modele.Utilisateur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 // Définition d'un service pour gérer les utilisateurs
 @Service
 public class Utilisateurservice {
     // Injection de dépendance pour accéder aux opérations de la base de données relatives aux utilisateurs
     @Autowired
-    private Utilisateurdao_user utilisateurdaoUser;
+    private UtilisateurRepository utilisateurRepository;
 
     // Méthode pour créer un nouvel utilisateur en base de données
 
-    public Utilisateur creer(Utilisateur user) {
-        return utilisateurdaoUser.save(user);
+    public Utilisateur inscrire(Utilisateur utilisateur) {
+        
+        return utilisateurRepository.save(utilisateur);
     }
 
     // Méthode pour récupérer la liste de tous les utilisateurs enregistrés en base de données
     public List<Utilisateur> lire() {
-        return utilisateurdaoUser.findAll();
+        
+        return utilisateurRepository.findAll();
     }
 
     // Méthode pour mettre à jour les informations d'un utilisateur existant en base de données
-    public Utilisateur modifier(Long id, Utilisateur user) {
+    public Utilisateur modifier(Long id, Utilisateur utilisateur) {
 
-        return utilisateurdaoUser.findById(id).map(p -> {
-            p.setPseudo(user.getPseudo());
-            p.setEmail(user.getEmail());
-            p.setQuizCrees(user.getQuizCrees());
-            p.setPassword(user.getPassword());
+        return utilisateurRepository.findById(id).map(u -> {
+            u.setPseudo(utilisateur.getPseudo());
+            u.setEmail(utilisateur.getEmail());
+            u.setQuizCreer(utilisateur.getQuizCreer());
+            u.setPassword(utilisateur.getPassword());
 
-            return utilisateurdaoUser.save(p);
-        }).orElseThrow(() -> new RuntimeException("Utilisateur pas trouvé"));
+            return utilisateurRepository.save(u);
+        }).orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
     }
 
     // Méthode pour supprimer un utilisateur en utilisant son identifiant
     public String supprimer(Long id) {
-        utilisateurdaoUser.deleteById(id);
+        utilisateurRepository.deleteById(id);
         return "Suppréssion effectuer ! ";
 
     }
     // Méthode pour gérer l'authentification d'un utilisateur
     public ApiResponse login(String email, String password) {
-        Utilisateur user = utilisateurdaoUser.findByEmail(email);
-        if (user == null) {
-            return new ApiResponse(200, "Le couple mot de passe ne correspond pas!", null);
+        Utilisateur utilisateur = utilisateurRepository.findByEmail(email);
+        if (utilisateur == null) {
+            return new ApiResponse(200, "Email incorrect" +
+                    "!!!", null);
         }
-        if (!user.getPassword().equals(password)) {
-            return new ApiResponse(200, "Le couple mot de passe ne correspond pas!", null);
+        if (!utilisateur.getPassword().equals(password)) {
+            return new ApiResponse(200, "mot de passe incorrect!", null);
         }
-        return new ApiResponse(200, "Login success", user);
+        return new ApiResponse(200, "Login success", utilisateur);
 
 
 
@@ -62,10 +65,10 @@ public class Utilisateurservice {
 
 
     public Utilisateur getUtilisateurById(Long utilisateurId) {
-        return utilisateurdaoUser.findById(utilisateurId).get();
+        return utilisateurRepository.findById(utilisateurId).get();
     }
 
     public Utilisateur findUtilisateurById(long userId) {
-        return  utilisateurdaoUser.findById((userId)).get();
+        return  utilisateurRepository.findById((userId)).get();
     }
 }

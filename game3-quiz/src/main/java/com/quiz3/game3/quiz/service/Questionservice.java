@@ -9,31 +9,34 @@ import java.util.List;
 @Service
 public class Questionservice {
     @Autowired
-    private QuestionRepository questiondao;
+    private QuestionRepository questionRepository;
+
 
     public Question creer(Question question) {
-        return questiondao.save(question);
+
+        return questionRepository.save(question);
     }
 
     public List<Question> lire() {
-        return questiondao.findAll();
+
+        return questionRepository.findAll();
     }
 
     public Question modifier(Long id, Question question) {
-        return questiondao.findById(id).map(q -> {
-            q.setContent(question.getContent());
-            q.setQuiz(question.getQuiz());
-            q.setReponses(question.getReponses());
-            return questiondao.save(q);
-        }).orElseThrow(() -> new RuntimeException("question introuvable : " + id));
+        return questionRepository.findById(id).map(q -> {
+            q.setContenu(question.getContenu());
+            q.setPoints(question.getPoints());
+            return questionRepository.save(q);
+        }).orElseThrow(() -> new RuntimeException("question introuvable ! "));
     }
 
     public String supprimer(Long id) {
-        questiondao.deleteById(id);
+        questionRepository.deleteById(id);
         return "Suppression effectuée !";
     }
 
     public Question findUtilisateurById(Long questionId) {
-        return questiondao.findQuestionById(questionId);
+
+        return questionRepository.findQuestionById(questionId);
     }
 }

@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface Reponsedao extends JpaRepository<Reponse, Long> {
+public interface ReponseRepository extends JpaRepository<Reponse, Long> {
    //  findReponsesByQuestion_Id( );
 
      List<Reponse> findReponsesByQuestion_Id(Long quizId);

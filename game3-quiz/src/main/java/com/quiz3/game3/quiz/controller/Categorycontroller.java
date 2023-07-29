@@ -23,7 +23,7 @@ public class Categorycontroller {
     }
     @GetMapping("")
     public List<Category> read(){
-        return categoryservice.lire();
+        return categoryservice.rechercher();
     }
     @PutMapping("/update/{id}")
     public Category update(@PathVariable Long id, @RequestBody Category category){

@@ -2,12 +2,9 @@ package com.quiz3.game3.quiz.modele;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.servlet.http.Part;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Utilisateur {
@@ -25,7 +22,7 @@ public class Utilisateur {
     // Association avec Quiz
     @JsonIgnore
     @OneToMany(mappedBy = "utilisateur", cascade=CascadeType.ALL, orphanRemoval = true)
-    private List<Quiz> quizCrees = new ArrayList<>();
+    private List<Quiz> quizCreer = new ArrayList<>();
 
    @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Participer> participers = new ArrayList<>();
@@ -67,12 +64,12 @@ public class Utilisateur {
         this.password = password;
     }
 
-    public List<Quiz> getQuizCrees() {
-        return quizCrees;
+    public List<Quiz> getQuizCreer() {
+        return quizCreer;
     }
 
-    public void setQuizCrees(List<Quiz> quizCrees) {
-        this.quizCrees = quizCrees;
+    public void setQuizCreer(List<Quiz> quizCreer) {
+        this.quizCreer = quizCreer;
     }
 
 
@@ -82,12 +79,12 @@ public class Utilisateur {
 
     }
 
-    public Utilisateur(long id, String pseudo, String email, List<Quiz> quizCrees) {
+    public Utilisateur(long id, String pseudo, String email, List<Quiz> quizCreer) {
         this.id = id;
         this.pseudo = pseudo;
         this.email = email;
         this.password = password;
-        this.quizCrees = quizCrees;
+        this.quizCreer = quizCreer;
 
 
     }

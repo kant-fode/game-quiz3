@@ -13,38 +13,37 @@ import java.util.Optional;
 public class ParticiperService {
     @Autowired
     private ParticiperRepository participerRepository;
-    public Participer createQuestion(Participer participer){
+    public Participer creerparticipation(Participer participer){
 
         return participerRepository.save(participer);
     }
-    public List<Participer> getAllQuestion(){
+    public List<Participer> list(){
 
-        return participerRepository.findAll();}
+        return participerRepository.findAll();
+    }
 
-    public Optional<Participer> getParticiperById(Long id){
+    public Optional<Participer> list(Long id){
 
-        return participerRepository.findById(id);}
+        return participerRepository.findById(id);
+    }
 
-    public String editParticiper(Long id, int score){
+    public String modifierParticiper(Long id, int score){
       participerRepository.findById(id)
               .map(p ->{
                   p.setScore(score);
-                  //p.setLocalDateTime(LocalDateTime.MAX);
+                  p.setLocalDateTime(LocalDateTime.MAX);
                   return participerRepository.save(p);
               }).orElseThrow(() -> new RuntimeException("non trouvé"));
                 return "mopdification reussie";
     }
-    public boolean deleQuestionById(Long id){
+    public String supprimer(Long id){
         participerRepository.deleteById(id);
-        return true;
-    }
-
-    public Participer getParticiperByUserAndQuizId(Long userId, Long quizId){
-        return participerRepository.findByUtilisateur_IdAndQuiz_Id(userId,quizId);
+        return "Supprimer";
     }
 
 
-    public Participer getParticiperByUserAndQuestionId(long userId, Long quizId) {
+
+    public Participer getParticiperByUserAndQuestionId(Long userId, Long quizId) {
         return participerRepository.findByUtilisateur_IdAndQuiz_Id(userId,quizId);
     }
 }

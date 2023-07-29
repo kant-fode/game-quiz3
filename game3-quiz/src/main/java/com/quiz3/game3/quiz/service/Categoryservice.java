@@ -10,26 +10,26 @@ import java.util.List;
 public class Categoryservice {
 
     @Autowired
-    private CategoryRepository categorydao;
+    private CategoryRepository categoryRepository;
 
     public Category creer(Category category) {
-        return categorydao.save(category);
+        return categoryRepository.save(category);
     }
 
-    public List<Category> lire() {
-        return categorydao.findAll();
+    public List<Category> rechercher() {
+        return categoryRepository.findAll();
     }
 
     public Category modifier(Long id, Category category) {
-        return categorydao.findById(id).map(c -> {
+        return categoryRepository.findById(id).map(c -> {
             c.setTitre(category.getTitre());
             c.setDescription(category.getDescription());
-            return categorydao.save(c);
-        }).orElseThrow(() -> new RuntimeException("categorie introuvable : " + id));
+            return categoryRepository.save(c);
+        }).orElseThrow(() -> new RuntimeException("categorie introuvable ! " ));
     }
 
     public String supprimer(Long id) {
-        categorydao.deleteById(id);
+        categoryRepository.deleteById(id);
         return "Suppression effectuée !";
     }
 }

@@ -13,7 +13,7 @@ public class Quiz {
     @Column(length = 10)
     private Long id;
     @Column(length = 50)
-    private String tritre;
+    private String titre;
 
     //association avc  utilisateur
     @ManyToOne

@@ -33,7 +33,7 @@ public class ParticiperController {
 
         Participer participer = participerService.getParticiperByUserAndQuestionId(userId, quizId);
         if (participer != null){
-            participerService.editParticiper(participer.getId(),0);
+            participerService.modifierParticiper(participer.getId(),0);
         }
         return "Participation a été initiliser";
     }
@@ -51,11 +51,11 @@ public class ParticiperController {
          participer.setScore(0);
          participer.setQuiz(quiz);
          participer.setUtilisateur(utilisateur);
-         participerService.createQuestion(participer);
+         participerService.creerparticipation(participer);
      }
      List<Reponse> responses = reponseservice.getAllResponseByQuestionId(questionId);
      if (checkResponse){
-         participerService.editParticiper(participer.getId(),participer.getScore()+question.getPoints());
+         participerService.modifierParticiper(participer.getId(),participer.getScore()+question.getPoints());
          return new ApiResponse(200, utilisateur.getPseudo()+ " vous avez choisi la bonne reponse votre score est de  " +(participer.getScore()+question.getPoints()),"win");
      }else
          return new ApiResponse(200,utilisateur.getPseudo()+" vous avez choisi la Mauvaise reponse "+checkedReponseID, "Game over");

@@ -18,9 +18,9 @@ public class UtilisateurController {
         this.utilisateurservice = utilisateurservice;
     }
 
-    @PostMapping("/create")
-    public Utilisateur create(@RequestBody Utilisateur utilisateur){
-        return utilisateurservice.creer(utilisateur);
+    @PostMapping("/inscrire")
+    public Utilisateur inscrire(@RequestBody Utilisateur utilisateur){
+        return utilisateurservice.inscrire(utilisateur);
     }
     @GetMapping("")
     public Optional<List> read(){

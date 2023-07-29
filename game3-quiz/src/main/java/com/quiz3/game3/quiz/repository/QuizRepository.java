@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 
-public interface Quizrepository extends JpaRepository<Quiz, Long> {
-    List <Quiz> findByTritreContaining(String titre);
+public interface QuizRepository extends JpaRepository<Quiz, Long> {
+    List <Quiz> findByTitre(String titre);
 }
