@@ -15,20 +15,20 @@ public class QuestionController {
         this.questionservice = questionservice;
     }
 
-    @PostMapping("/create")
-    public Question create(@RequestBody Question question){
+    @PostMapping("/creer")
+    public Question creer(@RequestBody Question question){
         return questionservice.creer(question);
     }
     @GetMapping("")
-    public List<Question> read(){
+    public List<Question> list(){
         return questionservice.lire();
     }
-    @PutMapping("/update/{id}")
-    public Question update(@PathVariable Long id, @RequestBody Question question){
+    @PutMapping("/modifier/{id}")
+    public Question modifier(@PathVariable Long id, @RequestBody Question question){
         return questionservice.modifier(id,question);
     }
-    @DeleteMapping("/delete")
-    public String delete (@PathVariable Long id){
+    @DeleteMapping("/supprimer")
+    public String supprimer (@PathVariable Long id){
         return questionservice.supprimer(id);
     }
 }

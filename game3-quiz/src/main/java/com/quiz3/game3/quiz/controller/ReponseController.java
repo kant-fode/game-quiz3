@@ -14,20 +14,20 @@ public class ReponseController {
         this.reponseservice = reponseservice;
     }
 
-    @PostMapping("/create")
-    public Reponse create(@RequestBody Reponse reponse){
+    @PostMapping("/creer")
+    public Reponse creer(@RequestBody Reponse reponse){
         return reponseservice.creer(reponse);
     }
     @GetMapping("")
-    public List<Reponse> read(){
+    public List<Reponse> list(){
         return reponseservice.lire();
     }
-    @PutMapping("/update/{id}")
-    public Reponse update(@PathVariable Long id, @RequestBody Reponse reponse){
+    @PutMapping("/modifier/{id}")
+    public Reponse modifier(@PathVariable Long id, @RequestBody Reponse reponse){
         return reponseservice.modifier(id,reponse);
     }
-    @DeleteMapping("/delete/{id}")
-    public String delete (@PathVariable Long id){
+    @DeleteMapping("/supprimer/{id}")
+    public String supprimer (@PathVariable Long id){
         return reponseservice.supprimer(id);
     }
 

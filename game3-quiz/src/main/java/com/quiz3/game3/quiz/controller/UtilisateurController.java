@@ -6,14 +6,14 @@ import com.quiz3.game3.quiz.service.Utilisateurservice;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("utilisateur")
+@RequestMapping("/utilisateur")
 
 public class UtilisateurController {
     private final Utilisateurservice utilisateurservice;
 
+    //constructeur
     public UtilisateurController(Utilisateurservice utilisateurservice) {
         this.utilisateurservice = utilisateurservice;
     }
@@ -22,29 +22,33 @@ public class UtilisateurController {
     public Utilisateur inscrire(@RequestBody Utilisateur utilisateur){
         return utilisateurservice.inscrire(utilisateur);
     }
-    @GetMapping("")
+    /*@GetMapping("")
     public Optional<List> read(){
        Optional<List> user = Optional.ofNullable(utilisateurservice.lire());
        return Optional.ofNullable(user.orElse(null));
+    }*/
+    @GetMapping("")
+    public List<Utilisateur> list(){
+        return utilisateurservice.lire();
     }
 
     @GetMapping("/{id}")
-    public Utilisateur getUtilisateurById(@PathVariable Long id){
+    public Utilisateur rechercher(@PathVariable Long id){
         return utilisateurservice.getUtilisateurById(id);
     }
-    @PutMapping("/update/{id}")
-    public Utilisateur update(@PathVariable Long id, @RequestBody Utilisateur utilisateur){
+    @PutMapping("/modifier/{id}")
+    public Utilisateur modifier(@PathVariable Long id, @RequestBody Utilisateur utilisateur){
         return utilisateurservice.modifier(id,utilisateur);
     }
-    @DeleteMapping("/delete/{id}")
-    public String delete (@PathVariable Long id){
+    @DeleteMapping("/supprimer/{id}")
+    public String supprimer(@PathVariable Long id){
         return utilisateurservice.supprimer(id);
     }
 
 
-    @PostMapping("/login")
-    public ApiResponse login(@RequestParam  String email, String password){
-        return  utilisateurservice.login(email, password);
+    @PostMapping("/connecter")
+    public ApiResponse connecter(@RequestParam  String email, String password){
+        return  utilisateurservice.connecter(email, password);
     }
 
 

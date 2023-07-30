@@ -48,7 +48,7 @@ public class Utilisateurservice {
 
     }
     // Méthode pour gérer l'authentification d'un utilisateur
-    public ApiResponse login(String email, String password) {
+    public ApiResponse connecter(String email, String password) {
         Utilisateur utilisateur = utilisateurRepository.findByEmail(email);
         if (utilisateur == null) {
             return new ApiResponse(200, "Email incorrect" +
@@ -65,7 +65,7 @@ public class Utilisateurservice {
 
 
     public Utilisateur getUtilisateurById(Long utilisateurId) {
-        return utilisateurRepository.findById(utilisateurId).get();
+        return utilisateurRepository.findById((utilisateurId)).get();
     }
 
     public Utilisateur findUtilisateurById(long userId) {

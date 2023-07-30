@@ -15,25 +15,25 @@ public class QuizController {
         this.quizservice = quizservice;
     }
 
-    @PostMapping("/create")
-    public Quiz create(@RequestBody Quiz quiz){
+    @PostMapping("/creer")
+    public Quiz creer(@RequestBody Quiz quiz){
         return quizservice.creer(quiz);
     }
     @GetMapping("")
-    public List<Quiz> read(){
+    public List<Quiz> list(){
         return quizservice.lire();
     }
 
-    @GetMapping("/chercher/{titre}")
-    public List<Quiz> chercher(@PathVariable String titre){
+    @GetMapping("/rechercher/{titre}")
+    public List<Quiz> rechercher(@PathVariable String titre){
         return quizservice.chercherQuiz(titre);
     }
-    @PutMapping("/update/{id}")
-    public Quiz update(@PathVariable Long id, @RequestBody Quiz quiz){
+    @PutMapping("/modifier/{id}")
+    public Quiz modifier(@PathVariable Long id, @RequestBody Quiz quiz){
         return quizservice.modifier(id,quiz);
     }
-    @DeleteMapping("/delete/{id}")
-    public String delete (@PathVariable Long id){
+    @DeleteMapping("/supprimer/{id}")
+    public String supprimer(@PathVariable Long id){
         return quizservice.supprimer(id);
     }
 }

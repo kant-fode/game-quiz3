@@ -27,14 +27,14 @@ public class ParticiperService {
         return participerRepository.findById(id);
     }
 
-    public String modifierParticiper(Long id, int score){
-      participerRepository.findById(id)
+    public Participer modifierParticiper(Long id, int score){
+      return participerRepository.findById(id)
               .map(p ->{
-                  p.setScore(score);
-                  p.setLocalDateTime(LocalDateTime.MAX);
+                  p.setScore(p.getScore());
+                  p.setLocalDateTime(p.getLocalDateTime().MAX);
                   return participerRepository.save(p);
               }).orElseThrow(() -> new RuntimeException("non trouvé"));
-                return "mopdification reussie";
+
     }
     public String supprimer(Long id){
         participerRepository.deleteById(id);
