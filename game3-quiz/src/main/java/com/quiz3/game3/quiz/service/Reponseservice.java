@@ -14,21 +14,23 @@ public class Reponseservice {
     @Autowired
 
     private ReponseRepository reponseRepository;
+    private Reponse reponse;
 
-    public Reponse creer(Reponse rep) {
-        return reponseRepository.save(rep);
+    public Reponse creer(Reponse reponse) {
+        return reponseRepository.save(reponse);
     }
 
     public List<Reponse> lire() {
         return reponseRepository.findAll();
     }
 
-    public Reponse modifier(Long id, Reponse rep) {
+    public Reponse modifier(Long id, Reponse reponse) {
+        this.reponse = reponse;
         return reponseRepository.findById(id).map(R -> {
-            R.setContenu(rep.getContenu());
-            R.setReponseType(rep.isReponseType());
+            R.setContenu(R.getContenu());
+            R.setReponseType(R.isReponseType());
             return reponseRepository.save(R);
-        }).orElseThrow(() -> new RuntimeException("Reponse non trouvée avec l'identifiant ! " ));
+        }).orElseThrow(() -> new RuntimeException("Reponse non trouvée ! " ));
     }
 
     public String supprimer(Long id) {

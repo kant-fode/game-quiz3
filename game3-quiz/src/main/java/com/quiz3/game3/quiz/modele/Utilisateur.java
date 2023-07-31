@@ -25,7 +25,7 @@ public class Utilisateur {
     private List<Quiz> quizCreer = new ArrayList<>();
 
    @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Participer> participers = new ArrayList<>();
+    private List<Participer> participer = new ArrayList<>();
 
 
 
@@ -79,7 +79,7 @@ public class Utilisateur {
 
     }
 
-    public Utilisateur(long id, String pseudo, String email, List<Quiz> quizCreer) {
+    public Utilisateur(long id, String pseudo, String email, String password, List<Quiz> quizCreer) {
         this.id = id;
         this.pseudo = pseudo;
         this.email = email;
@@ -89,12 +89,12 @@ public class Utilisateur {
 
     }
 
-    public List<Participer> getParticipers() {
-        return participers;
+    public List<Participer> getParticiper() {
+        return participer;
     }
 
-    public void setParticipers(List<Participer> participers) {
-        this.participers = participers;
+    public void setParticiper(List<Participer> participers) {
+        this.participer = participers;
     }
 
 

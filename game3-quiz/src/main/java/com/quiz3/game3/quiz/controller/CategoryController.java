@@ -9,28 +9,28 @@ import java.util.List;
 @RestController
 @RequestMapping("category")
 
-public class Categorycontroller {
+public class CategoryController {
 
     private final Categoryservice categoryservice;
 
-    public Categorycontroller(Categoryservice categoryservice){
+    public CategoryController(Categoryservice categoryservice){
         this.categoryservice = categoryservice;
     }
 
-    @PostMapping("/create")
-    public Category create(@RequestBody Category category){
+    @PostMapping("/creer")
+    public Category creer(@RequestBody Category category){
         return categoryservice.creer(category);
     }
     @GetMapping("")
-    public List<Category> read(){
+    public List<Category> list(){
         return categoryservice.rechercher();
     }
-    @PutMapping("/update/{id}")
-    public Category update(@PathVariable Long id, @RequestBody Category category){
+    @PutMapping("/modifier/{id}")
+    public Category modifier(@PathVariable Long id, @RequestBody Category category){
         return categoryservice.modifier(id,category);
     }
-    @DeleteMapping("/delete/{id}")
-    public String delete (@PathVariable Long id){
+    @DeleteMapping("/supprimer/{id}")
+    public String supprimer (@PathVariable Long id){
         return categoryservice.supprimer(id);
     }
 

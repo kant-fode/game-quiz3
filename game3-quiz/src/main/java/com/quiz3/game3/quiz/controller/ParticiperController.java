@@ -28,17 +28,17 @@ public class ParticiperController {
     }
 
     // initialisation de la participation
-    @GetMapping("/{userId}/{quizId}/init")
-    public String init(@PathVariable long userId,@PathVariable Long quizId, @RequestParam Long checkedReponseID){
+    @GetMapping("/{userId}/{quizId}/commencement")
+    public String commencement(@PathVariable Long userId,@PathVariable Long quizId, @RequestParam Long checkedReponseID){
 
         Participer participer = participerService.getParticiperByUserAndQuestionId(userId, quizId);
         if (participer != null){
             participerService.modifierParticiper(participer.getId(),0);
         }
-        return "Participation a été initiliser";
+        return "Le jeu commence...";
     }
  @GetMapping("/{userId}/{quizId}/{questionId}")
-    public ApiResponse jouer (@PathVariable long userId,@PathVariable Long quizId, @PathVariable Long questionId, @RequestParam Long checkedReponseID){
+    public ApiResponse jouer (@PathVariable Long userId,@PathVariable Long quizId, @PathVariable Long questionId, @RequestParam Long checkedReponseID){
      Utilisateur utilisateur = utilisateurservice.findUtilisateurById(userId);
      Question question = questionservice.findUtilisateurById(questionId);
      Quiz quiz = question.getQuiz();

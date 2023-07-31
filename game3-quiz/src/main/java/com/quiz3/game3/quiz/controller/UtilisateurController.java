@@ -47,7 +47,7 @@ public class UtilisateurController {
 
 
     @PostMapping("/connecter")
-    public ApiResponse connecter(@RequestParam  String email, String password){
+    public ApiResponse connecter(@RequestParam  String email,@RequestParam String password){
         return  utilisateurservice.connecter(email, password);
     }
 
